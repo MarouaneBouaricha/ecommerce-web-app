@@ -1,0 +1,221 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+<main>
+    <section class="uk-section uk-section-small">
+      <div class="uk-container">
+        <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
+          <div class="uk-text-center">
+            <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><span>Contacts</span></li>
+            </ul>
+            <h1 class="uk-margin-small-top uk-margin-remove-bottom">
+              Contacts
+            </h1>
+          </div>
+          <div>
+            <div class="uk-grid-medium" uk-grid>
+              <section class="uk-width-1-1 uk-width-expand@m">
+                <article
+                  class="uk-card uk-card-default uk-card-small uk-card-body uk-article tm-ignore-container"
+                >
+                  <div
+                    class="uk-child-width-1-1 uk-child-width-1-2@s uk-margin-top"
+                    uk-grid
+                  >
+                    <section>
+                      <h3>Store</h3>
+                      <ul class="uk-list">
+                        <li>
+                          <a class="uk-link-heading" href="#"
+                            ><span
+                              class="uk-margin-small-right"
+                              uk-icon="receiver"
+                            ></span
+                            ><span class="tm-pseudo"
+                              >8 800 799 99 99</span
+                            ></a
+                          >
+                        </li>
+                        <li>
+                          <a class="uk-link-heading" href="#"
+                            ><span
+                              class="uk-margin-small-right"
+                              uk-icon="mail"
+                            ></span
+                            ><span class="tm-pseudo"
+                              >example@example.com</span
+                            ></a
+                          >
+                        </li>
+                        <li>
+                          <div>
+                            <span
+                              class="uk-margin-small-right"
+                              uk-icon="location"
+                            ></span
+                            ><span
+                              >St.&nbsp;Petersburg,
+                              Nevsky&nbsp;Prospect&nbsp;28</span
+                            >
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            <span
+                              class="uk-margin-small-right"
+                              uk-icon="clock"
+                            ></span
+                            ><span>Daily 10:00–22:00</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </section>
+                    <section>
+                      <h3>Feedback</h3>
+                      <dl class="uk-description-list">
+                        <dt>Cooperation</dt>
+                        <dd>
+                          <a class="uk-link-muted" href="#"
+                            >cooperation@example.com</a
+                          >
+                        </dd>
+                        <dt>Partners</dt>
+                        <dd>
+                          <a class="uk-link-muted" href="#"
+                            >partners@example.com</a
+                          >
+                        </dd>
+                        <dt>Press</dt>
+                        <dd>
+                          <a class="uk-link-muted" href="#"
+                            >press@example.com</a
+                          >
+                        </dd>
+                      </dl>
+                    </section>
+                    <section class="uk-width-1-1">
+                      <h2 class="uk-text-center">Contact Us</h2>
+                      <form id="contactForm">
+                        <div
+                          class="uk-grid-small uk-child-width-1-1"
+                          uk-grid
+                        >
+                          <div>
+                            <label
+                              ><div
+                                class="uk-form-label uk-form-label-required"
+                              >
+                                Name
+                              </div>
+                              <input class="uk-input" type="text" name="name" required
+                            /></label>
+                          </div>
+                          <div>
+                            <label
+                              ><div
+                                class="uk-form-label uk-form-label-required"
+                              >
+                                Email
+                              </div>
+                              <input class="uk-input" type="email" name="email" required
+                            /></label>
+                          </div>
+                          <div>
+                            <label
+                              ><div class="uk-form-label">Topic</div>
+                              <select class="uk-select" id="topic">
+                                <option>Customer service</option>
+                                <option>Tech support</option>
+                                <option>Other</option>
+                              </select></label
+                            >
+                          </div>
+                          <div>
+                            <label
+                              ><div class="uk-form-label uk-form-label-required">Message</div>
+                              <textarea
+                                class="uk-textarea"
+                                rows="5"
+                                required
+                                name="message"
+                              ></textarea>
+                            </label>
+                          </div>
+                          <div class="uk-text-center">
+                            <button class="uk-button uk-button-primary" type="submit">
+                              Send
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </section>
+                  </div>
+                </article>
+              </section>
+              <aside class="uk-width-1-4 uk-visible@m tm-aside-column">
+                <section
+                  class="uk-card uk-card-default uk-card-small"
+                  uk-sticky="offset: 90; bottom: true;"
+                >
+                  <nav>
+                    <ul class="uk-nav uk-nav-default tm-nav">
+                      <li><a href="{% url 'store-about' %}">About</a></li>
+                      <li class="uk-active">
+                        <a href="{% url 'store-contacts' %}">Contacts</a>
+                      </li>
+                      <li><a href="{% url 'store-fqa' %}">FAQ</a></li>
+                    </ul>
+                  </nav>
+                </section>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    var contactForm = document.getElementById("contactForm");
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var ContactUserForm = {
+          name: null,
+          email: null,
+          topic: null,
+          message: null,
+        };
+
+        ContactUserForm.name = contactForm.name.value;
+        ContactUserForm.email = contactForm.email.value;
+
+        var sel = document.getElementById("topic");
+        ContactUserForm.topic = sel.options[sel.selectedIndex].text;
+        ContactUserForm.message = contactForm.message.value;
+
+        var url = "/process_contact/";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "applicaiton/json",
+        "X-CSRFToken": getToken('csrftoken'),
+      },
+      body: JSON.stringify({ form: ContactUserForm }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        UIkit.notification({
+          message: 'Your message has been saved successffuly!',
+          status: 'primary',
+          pos: 'top-center',
+          timeout: 3000
+        });
+
+        contactForm.name.value = '';
+        contactForm.email.value = '';
+        contactForm.message.value = '';
+
+      });
+      });
+  </script>
+{% endblock content %}

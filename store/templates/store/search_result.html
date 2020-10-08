@@ -1,0 +1,170 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+
+<main>
+  <section class="uk-section uk-section-small">
+    <div class="uk-container">
+      <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
+        <div>
+          <div class="uk-grid-medium" uk-grid>
+            <div class="uk-width-expand">
+              <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
+                <div>
+                  <div
+                    class="uk-card uk-card-default uk-card-small tm-ignore-container"
+                  >
+                    <div
+                      class="uk-grid-collapse uk-child-width-1-1"
+                      id="products"
+                      uk-grid
+                    >
+                      <div class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                          <div
+                            class="uk-width-1-1 uk-width-auto@s uk-flex uk-flex-center uk-flex-middle"
+                          >
+                            <button
+                              class="uk-button uk-button-default uk-button-small uk-hidden@m"
+                              uk-toggle="target: #filters"
+                            >
+                              <span
+                                class="uk-margin-xsmall-right"
+                                uk-icon="icon: settings; ratio: .75;"
+                              ></span
+                              >Filters
+                            </button>
+                            <div class="tm-change-view uk-margin-small-left">
+                              <ul
+                                class="uk-subnav uk-iconnav js-change-view"
+                                uk-switcher
+                              >
+                                <li>
+                                  <a
+                                    class="uk-active"
+                                    data-view="grid"
+                                    uk-icon="grid"
+                                    uk-tooltip="Grid"
+                                  ></a>
+                                </li>
+                                <li>
+                                  <a
+                                    data-view="list"
+                                    uk-icon="list"
+                                    uk-tooltip="List"
+                                  ></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% if result %}
+                      <div>
+                        <div
+                          class="uk-grid-collapse uk-child-width-1-3 tm-products-grid js-products-grid"
+                          uk-grid
+                        >
+                          {% for product in result %}
+                          <article class="tm-product-card">
+                            <div class="tm-product-card-media">
+                              <div class="tm-ratio tm-ratio-4-3">
+                                <a
+                                  class="tm-media-box"
+                                  href="{% url 'store-product' productId=product.id%}"
+                                >
+                                  <figure class="tm-media-box-wrap">
+                                    <img src="{{ product.imageURL }}" /></figure
+                                ></a>
+                              </div>
+                            </div>
+                            <div class="tm-product-card-body">
+                              <div class="tm-product-card-info">
+                                <div
+                                  class="uk-text-meta uk-margin-xsmall-bottom"
+                                >
+                                  {{product.category}}
+                                </div>
+                                <h3 class="tm-product-card-title">
+                                  <a
+                                    class="uk-link-heading"
+                                    href="{% url 'store-product' productId=product.id %}"
+                                    >{{ product.name }}</a
+                                  >
+                                </h3>
+                                <p class="uk-center">
+                                  {{ product.description }}
+                                </p>
+                              </div>
+                              <div class="tm-product-card-shop">
+                                <div class="tm-product-card-prices">
+                                  <div class="tm-product-card-price">
+                                    ${{ product.price }}
+                                  </div>
+                                </div>
+                                <div class="tm-product-card-add">
+                                  <button
+                                    class="uk-button uk-button-primary tm-product-card-add-button tm-shine js-add-to-cart update-cart"
+                                    data-product="{{product.id}}"
+                                    data-action="add"
+                                  >
+                                    <span
+                                      class="tm-product-card-add-button-icon"
+                                      uk-icon="cart"
+                                    ></span
+                                    ><span
+                                      class="tm-product-card-add-button-text"
+                                      >add to cart</span
+                                    >
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </article>
+                          {% endfor %}
+                        </div>
+                      </div>
+                      {% else %}
+                      <div>
+                        <div class="uk-card uk-card-default uk-card-body">
+                          <h3 class="uk-card-title">No products found.</h3>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <ul class="uk-pagination uk-flex-center">
+                    {% if page.has_previous %}
+                    <li>
+                      <a href="?page={{ page.previous_page_number }}"
+                        ><span uk-pagination-previous></span
+                      ></a>
+                    </li>
+                    {% endif %} {% for pageNum in paginator.page_range %}
+
+                    <li
+                      class="{% if pageNum == page_number %} uk-active {% endif %}"
+                    >
+                      <a href="?page={{ pageNum }}"
+                        ><span> {{ pageNum }} </span></a
+                      >
+                    </li>
+
+                    {% endfor %} {% if page.has_next %}
+                    <li>
+                      <a href="?page={{ page.next_page_number }}"
+                        ><span uk-pagination-next></span
+                      ></a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock content %}

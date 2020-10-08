@@ -1,0 +1,132 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+
+<section
+  class="uk-position-relative uk-visible-toggle uk-light"
+  uk-slideshow="min-height: 300; max-height: 600;"
+>
+  <ul class="uk-slideshow-items">
+    <li style="background-color: #0b0a12">
+      <a href="#"
+        ><figure class="uk-container uk-height-1-1">
+          <img
+            src="{% static 'store/images/promo/macbook-new.jpg' %}"
+            alt="New Macbook"
+            width="1200"
+            height="600"
+            uk-cover
+          /></figure
+      ></a>
+    </li>
+    <li style="background-color: #ce071e">
+      <a href="#"
+        ><figure class="uk-container uk-height-1-1">
+          <img
+            src="{% static 'store/images/promo/iphone.jpg' %}"
+            alt="iPhone"
+            width="1200"
+            height="600"
+            uk-cover
+          /></figure
+      ></a>
+    </li>
+    <li style="background-color: #1f2024">
+      <a href="#"
+        ><figure class="uk-container uk-height-1-1">
+          <img
+            src="{% static 'store/images/promo/ipad.jpg' %}"
+            alt="iPad"
+            width="1200"
+            height="600"
+            uk-cover
+          /></figure
+      ></a>
+    </li>
+  </ul>
+  <a
+    class="uk-position-center-left uk-position-small uk-hidden-hover"
+    href="#"
+    uk-slideshow-item="previous"
+    uk-slidenav-previous
+  ></a
+  ><a
+    class="uk-position-center-right uk-position-small uk-hidden-hover"
+    href="#"
+    uk-slideshow-item="next"
+    uk-slidenav-next
+  ></a>
+  <div class="uk-position-bottom-center uk-position-small">
+    <ul class="uk-slideshow-nav uk-dotnav"></ul>
+  </div>
+</section>
+<section class="uk-section uk-section-small">
+  <div class="uk-container">
+    <h2 class="uk-text-center">Trending Items</h2>
+    <div class="uk-card uk-card-default tm-ignore-container">
+      <div
+        class="uk-grid-collapse uk-child-width-1-4 uk-child-width-1-{{products|length}}@m tm-products-grid"
+        uk-grid
+      >
+        {% for product in products %}
+        <article class="tm-product-card">
+          <div class="tm-product-card-media">
+            <div class="tm-ratio tm-ratio-4-3">
+              <a
+                class="tm-media-box showInfo"
+                href="{% url 'store-product' productId=product.id %}"
+                data-product="{{product.id}}"
+                data-action="show"
+              >
+                <figure class="tm-media-box-wrap">
+                  <img src="{{product.imageURL}}" /></figure
+              ></a>
+            </div>
+          </div>
+          <div class="tm-product-card-body">
+            <div class="tm-product-card-info">
+              <div class="uk-text-meta uk-margin-xsmall-bottom">{{product.category}}</div>
+              <h3 class="tm-product-card-title">
+                <a
+                  class="uk-link-heading showInfo"
+                  href="{% url 'store-product' productId=product.id %}"
+                  data-product="{{product.id}}"
+                  >{{product.name}}</a
+                >
+              </h3>
+            </div>
+            <div class="tm-product-card-shop">
+              <div class="tm-product-card-prices">
+                <div class="tm-product-card-price">${{product.price}}</div>
+              </div>
+              <div class="tm-product-card-add">
+                <button
+                  class="uk-button uk-button-primary tm-product-card-add-button tm-shine update-cart"
+                  data-product="{{product.id}}"
+                  data-action="add"
+                >
+                  <span
+                    class="tm-product-card-add-button-icon"
+                    uk-icon="cart"
+                  ></span
+                  ><span class="tm-product-card-add-button-text"
+                    >add to cart</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+        {% endfor%}
+      </div>
+    </div>
+  </div>
+</section>
+<div class="uk-margin uk-text-center">
+  <a
+    class="uk-link-muted uk-text-uppercase tm-link-to-all"
+    href="{% url 'store-catalog' %}"
+    ><span>Shop all</span
+    ><span uk-icon="icon: chevron-right; ratio: .75;"></span
+  ></a>
+</div>
+
+{% endblock content %}

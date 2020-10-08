@@ -1,0 +1,94 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+<main>
+    <section class="uk-section uk-section-small">
+      <div class="uk-container">
+        <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
+          <section class="uk-text-center">
+            <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><span>About</span></li>
+            </ul>
+          </section>
+          <section>
+            <div>
+              <article
+                class="uk-card uk-card-default uk-card-body uk-article tm-ignore-container"
+              >
+                <header class="uk-text-center">
+                  <h1 class="uk-article-title">About</h1>
+                </header>
+                <div class="uk-article-body">
+                  <p class="uk-text-lead uk-text-center">
+                    Urabitur justo diam, auctor vitae ornare sit amet,
+                    accumsan sed neque. Curabitur efficitur lacinia euismod.
+                    Nunc dictum sagittis lacus. Etiam ultrices nulla orci,
+                    in ultrices risus.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Maecenas ac tortor sit amet nisi malesuada commodo.
+                    Phasellus et tempus justo. Sed iaculis dignissim
+                    lacinia. Nulla id felis vel ligula tempus sodales vel a
+                    ante. Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Maecenas quis neque ac elit lacinia laoreet. Sed
+                    dolor sem, rutrum ac egestas non, tempor nec eros. Etiam
+                    lobortis porta viverra. Etiam ut suscipit sem, a
+                    volutpat mi. Maecenas euismod a lectus ut dapibus. Nulla
+                    mattis diam et leo lacinia dignissim.
+                  </p>
+                  <h2 class="uk-text-center">Our principles</h2>
+                  <ul class="uk-list uk-list-bullet">
+                    <li>
+                      Vestibulum ut mollis est. Fusce iaculis mauris ut
+                      tortor convallis sollicitudin. Suspendisse porta nulla
+                      nibh, id lacinia lacus tempus ut. Morbi non arcu
+                      aliquam, placerat sapien a, luctus diam. Etiam mattis
+                      cursus sem, eu maximus nisi bibendum nec. Vivamus ut
+                      turpis augue. Phasellus vehicula risus sit amet mi
+                      luctus malesuada.
+                    </li>
+                    <li>
+                      Curabitur justo diam, auctor vitae ornare sit amet,
+                      accumsan sed neque. Curabitur efficitur lacinia
+                      euismod. Nunc dictum sagittis lacus. Etiam ultrices
+                      nulla orci, in ultrices risus tincidunt ac. Cras et
+                      maximus mauris. Morbi aliquam efficitur maximus.
+                      Aenean orci diam, auctor a mattis eu, consectetur id
+                      urna.
+                    </li>
+                    <li>
+                      Morbi faucibus mattis ante. Donec varius neque sem,
+                      nec convallis mi dictum ut. Duis sit amet massa ac
+                      eros luctus egestas. Proin hendrerit aliquam metus, ac
+                      tincidunt risus viverra at. In viverra, ligula in
+                      facilisis interdum, dui arcu varius purus, eu blandit
+                      mi mi ut diam. Phasellus finibus metus sit amet
+                      lobortis dapibus. Nunc fringilla ac erat vitae
+                      elementum. Donec sagittis odio non mi vestibulum
+                      accumsan.
+                    </li>
+                  </ul>
+                  <h2 class="uk-text-center">Store</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus imperdiet venenatis est. Phasellus vitae mauris
+                    imperdiet, condimentum eros vel, ullamcorper turpis.
+                    Maecenas sed libero quis orci egestas vehicula fermentum
+                    id diam.
+                  </p>
+                  <figure>
+                    <div class="uk-text-bolder">Store Name</div>
+                    <div>
+                      St.&nbsp;Petersburg, Nevsky&nbsp;Prospect&nbsp;28
+                    </div>
+                    <div>Daily 10:00–22:00</div>
+                  </figure>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock content %}
